@@ -1,0 +1,13 @@
+---
+- hosts: routers
+  gather_facts: yes
+  tasks:
+  - name: Show running config
+    cisco.ios.ios_command:
+      commands:
+      - show running-config
+    register: run_cfg
+  - name: Display running config
+    ansible.builtin.debug:
+      var: run_cfg.stdout_lines
+

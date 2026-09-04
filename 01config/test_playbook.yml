@@ -1,6 +1,6 @@
 ---
 - name: Get Target System version
-  hosts: router
+  hosts: routers
   gather_facts: yes
   tasks:
     - name: Display Version of Devices
