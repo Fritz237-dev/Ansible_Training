@@ -1,0 +1,9 @@
+---
+- hosts: switch
+  gather_facts: no
+  tasks:
+  ansible.builtin.debug:
+    - name: Show VLANs on Cisco Switch
+      cisco.ios.ios_command:
+        commands:
+          - show vlan
