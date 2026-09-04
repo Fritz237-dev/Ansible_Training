@@ -1,9 +1,10 @@
 ---
-- hosts: switch
-  gather_facts: no
+- name: Get Target System version
+  hosts: router
+  gather_facts: yes
   tasks:
-  ansible.builtin.debug:
-    - name: Show VLANs on Cisco Switch
-      cisco.ios.ios_command:
-        commands:
-          - show vlan
+    - name: Display Version of Devices
+      ansible.builtin.debug:
+       msg: 
+        - "The version of the device is: {{ ansible_net_version }}"
+    
