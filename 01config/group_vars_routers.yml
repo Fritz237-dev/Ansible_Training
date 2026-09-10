@@ -1,0 +1,17 @@
+---
+
+- name: Configure IP domain name on Cisco router
+  hosts: routers
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Set IP domain name
+      ios_config:
+        lines:
+          - ip domain-name fritzlab.local
+
+
+    - name: print domain name
+      ansible.builtin.debug:
+        msg:
+          - "{{ip_domains_name}}"
