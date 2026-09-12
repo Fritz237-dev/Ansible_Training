@@ -12,9 +12,9 @@
 
         gather_network_resources:
         - static_routes
-        - l3-interfaces
+        - l3_interfaces
+      register: ios_result
       
-    - name:
-      builtin.debug.module:
-        msg:
-          - "{{ansible_net}}"
+    - name: Print Configured IP addresses on Cisco devices
+      ansible.builtin.debug:
+        var: ansible_net_all_ipv4_addresses
