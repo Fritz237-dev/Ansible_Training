@@ -1,0 +1,21 @@
+---
+- name: Show interface status
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+  - name: Show interface info
+    cisco.ios.ios_command:
+      commands:
+      - show ip interface brief
+      wait_for:
+      - result[0] contains up
+      - result[0] contains administratively up
+      match: all
+      retries: 10
+      interval: 2
+    register: ios_result
+
+  - name: print the output of the command
+    ansible.builtin.debug:
+      var: ios_result

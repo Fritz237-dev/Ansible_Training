@@ -1,0 +1,19 @@
+---
+- name: Configure ip add
+  hosts: routers
+  gather_facts: no
+  tasks: 
+    - name: Configure int Gi0/2
+      cisco.ios.ios_config:
+        lines: 
+          - description from ansible
+          - ip address 192.168.2.1 255.255.255.0
+          - no shut
+        parents: interface Gigabitethernet0/2
+        backup: yes
+        save_when: modified
+      register: intf_config
+
+    - name: Display int config
+      ansible.builtin.debug:
+        var: intf_config

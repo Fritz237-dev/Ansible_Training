@@ -17,4 +17,4 @@
       
     - name: Print Configured IP addresses on Cisco devices
       ansible.builtin.debug:
-        var: ansible_net_all_ipv4_addresses
+        var: ansible_net_all_ipv4_address

@@ -1,0 +1,19 @@
+---
+- name: Gather Device information
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Gather info on device config
+      cisco.ios.ios_facts:
+        gather_subset:
+          - min
+          - interfaces
+        gather_network_resources:
+          - l3_interfaces
+          - static_routes
+      register: ios_results
+
+    - name: Display interface and route stats
+      ansible.builtin.debug:
+        msg:
+          - "{{ios_results}}"
