@@ -1,0 +1,16 @@
+---
+- name: Configure a static route
+  hosts: R1
+  gather_facts: no
+  tasks:
+  - name: Configure a static route to 10.0.10.0
+    cisco.ios.ios_static_routes:
+      config:
+        - address_families:
+            - afi: ipv4
+              routes: 
+               - dest: 10.0.10.0/24
+                 next_hops:
+                  - forward_router_address: 172.168.2.1
+      state: merged
+                

@@ -1,0 +1,19 @@
+---
+- name: Get Router config
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Gather information from the router
+      cisco.ios.ios_facts:
+        gather_subset:
+          - min
+          - interfaces
+        gather_network_resources:
+          - interfaces
+          
+
+    - name: show gathered facts
+      ansible.builtin.debug:
+        var: ansible_net_all_ipv4_addresses
+
+

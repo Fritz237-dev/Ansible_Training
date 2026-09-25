@@ -1,0 +1,25 @@
+---
+- name: Configure static Route on Cisco routers
+  hosts: R1
+  gather_facts: no
+  tasks:
+    - name: configure static route
+      cisco.ios.ios_static_routes:
+        config:
+          - address_families:
+              - afi: ipv4
+                routes:
+                  - dest: 172.168.2.0/24
+                    next_hops:
+                      - forward_router_address: 172.168.2.1
+        state: merged
+      register: result_ios_static_route
+    - name: show output
+      cisco.ios.ios_command:
+        commands:
+          - show ip route
+      register: ios_result
+
+    - name: show route
+      ansible.builtin.debug:
+        var: ios_result    

@@ -1,0 +1,16 @@
+---
+- name: Configure interface on R1
+  hosts: R1
+  gather_facts: no
+  tasks:
+    - name: configure interface
+      cisco.ios.ios_l3_interfaces:
+        config:
+         - name: Gigabitethernet0/2
+           ipv4:
+            - address: 172.168.2.2/24
+        state: replaced
+      register: result_ios_l3_interface
+    - name: show output
+      ansible.builtin.debug:
+        var: result_ios_l3_interface

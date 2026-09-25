@@ -1,0 +1,15 @@
+---
+- name: Configuring vlans across the entire infrastructure
+  hosts: switches
+  gather_facts: no
+  tasks:
+    - name: configuring vlans on switches
+      cisco.ios.ios_vlan:
+        config:
+          vlan_id: 10
+          name: USERS
+          state: present
+
+          vlan_id: 20
+          name: SERVERS
+          state: present

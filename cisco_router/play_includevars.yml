@@ -1,0 +1,19 @@
+--- 
+- name: Using include vars for demo
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Using inlcude var to define variables
+      ansible.builtin.include_vars:
+        file: "vars/includevars.yml"
+        name: site_config
+    
+    - name: use loaded variable to configure an ip domain name
+      cisco.ios.ios_config:
+        lines:
+          - ip domain-name "{{site_config.ip_domain_name}}"
+      register: ios_result
+
+    - name: Display output
+      ansible.builtin.debug:
+        var: ios_result

@@ -1,0 +1,15 @@
+---
+- name: show router information
+  hosts: R1
+  gather_facts: no
+  tasks:
+  - name: Ipv4 address of interfaces
+    cisco.ios.ios_command:
+      commands:
+        - show ip interface brief
+    register: result_ios_command
+
+  - name: Display Output
+    ansible.builtin.debug:
+      var: result_ios_command
+      

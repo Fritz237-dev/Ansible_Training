@@ -1,0 +1,16 @@
+---
+- name: configuring OSPF using the OSPF module
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: configuring OSPF using the ios module
+      cisco.ios.ios_ospf:
+        config:
+          processes:
+            - process_id: 1
+              networks:
+                - prefix: 10.10.10.0/24
+                  area: 0
+                - prefix: 172.168.1.0/24
+                  area: 0
+                  

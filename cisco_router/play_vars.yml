@@ -1,0 +1,23 @@
+---
+- name: Using Variables to hardcode values
+  hosts: routers
+  vars:
+    ip_domain_name: fritz.local
+    ntp_server: 10.0.0.1
+  vars_files:
+    - vars/router.yml
+  gather_facts: no
+  tasks:
+    - name: Config the ip domain from the vars file
+      cisco.ios.ios_config:
+        lines:
+          - ip domain name "{{ip_domain_name}}"
+        save_when: changed
+        
+    - name: display config output
+      ansible.builtin.debug:
+        msg:
+          - "The ip domain name is:{{ip_domain_name}}"
+          - "The tacacs_server is :{{tacacs_server}}"
+          
+          

@@ -1,0 +1,26 @@
+---
+- name: configure R1 interface
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: configure interface
+      cisco.ios.ios_config:
+        backup: yes
+        backup_options:
+          filename: R1_backup
+          
+      register: result_ios
+    
+    - name: show interface status
+      cisco.ios.ios_command:
+        commands:
+          - show ip interface brief
+        wait_for:
+          - result[0] contains up
+          - result[0] contains Gigabitethernet0/1
+        match: any
+      register: result_ios_command
+    
+    - name: Show Output
+      ansible.builtin.debug:
+        var: result_ios_command
