@@ -1,0 +1,17 @@
+---
+ospf_vars:
+  process_id: 1
+  area: 0
+  networks:
+    - { network: "10.10.10.0", wildcard_mask: "0.0.0.255" }
+    - { network: "172.168.2.0", wildcard_mask: "0.0.0.255" }
+    - { network: "172.168.1.0", wildcard_mask: "0.0.0.255" }
+    - { network: "10.0.10.0", wildcard_mask: "0.0.0.255" }
+    - { network: "192.168.2.0", wildcard_mask: "0.0.0.255" }
+
+static_routes:
+  - { prefix: "10.10.10.0", mask: "255.255.255.0", next_hop: 172.168.2.2 }
+  - { prefix: "10.10.10.0", mask: "255.255.255.0", next_hop: 172.168.1.1 }
+  - { prefix: "172.168.2.0", mask: "255.255.255.0", next_hop: 172.168.1.1 }
+  - { prefix: "10.10.10.0", mask: "255.255.255.0", next_hop: 172.168.2.1 }
+

@@ -1,0 +1,18 @@
+---
+- name: Delete static routes on all routers using jinja2 template
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Delete static routes
+      cisco.ios.ios_config:
+        src: no_static.j2
+        
+    - name: Show Route Output
+      cisco.ios.ios_command:
+        commands:
+          - show ip route
+      register: route_output
+
+    - name: Display route output
+      ansible.builtin.debug:
+        msg: "{{ route_output.stdout_lines }}"

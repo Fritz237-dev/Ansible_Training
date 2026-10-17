@@ -1,0 +1,21 @@
+---
+- name: configure vlan on a switch
+  hosts: switches
+  gather_facts: no
+  tasks:
+    - name: configure vlan
+      cisco.ios.ios_vlans:
+        config:
+          - vlan_id: 10
+            name: "IT Department"
+        state: merged
+    - name: Show Vlan output
+      cisco.ios.ios_command:
+        commands:
+          - show vlan brief
+      register: vlan_output
+
+    - name: Display Vlan Output
+      ansible.builtin.debug:
+        msg: "{{ vlan_output.stdout_lines }}"
+

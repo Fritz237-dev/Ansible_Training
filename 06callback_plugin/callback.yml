@@ -1,0 +1,15 @@
+---
+- name: Show running configuration on R1 and R2
+  hosts: 
+     - R1
+     - R2
+  gather_facts: no
+  tasks:
+    - name: Show running configuration
+      cisco.ios.ios_command:
+        commands:
+        - show running-config
+      register: Running_config
+    - name: Display output
+      ansible.builtin.debug:
+        msg: "{{ Running_config.stdout_lines}}"
