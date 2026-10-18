@@ -1,0 +1,6 @@
+vlans:
+  - { id: 10, name: "IT Department" }
+  - { id: 20, name: "HR Department" }
+  - { id: 30, name: "Finance Department"}
+  - { id: 40, name: "Marketing Department" }
+  

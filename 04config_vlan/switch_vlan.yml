@@ -4,10 +4,9 @@
   gather_facts: no
   tasks:
     - name: configure vlan
-      cisco.ios.ios_vlans:
+      cisco.ios.ios_config:
         config:
-          - vlan_id: 10
-            name: "IT Department"
+          src: vlan_conf.j2
         state: merged
     - name: Show Vlan output
       cisco.ios.ios_command:
