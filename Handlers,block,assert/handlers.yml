@@ -1,0 +1,15 @@
+---
+- name: Configuring Handlers, block and Assert
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Configure Handlers
+      cisco.ios.ios_config:
+        backup: yes
+      notify: Save Configuration
+      run_once: false
+  handlers:
+    - name: Save Configuration
+      cisco.ios.ios_config:
+        save_when: always
+  
