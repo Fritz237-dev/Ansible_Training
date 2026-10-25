@@ -1,0 +1,7 @@
+- name: Show Running configuration using Roles 
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Show Running configuration using Roles
+      ansible.builtin.include_role:
+        name: OSPF_role

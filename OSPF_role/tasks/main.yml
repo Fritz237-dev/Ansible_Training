@@ -1,0 +1,11 @@
+---
+# tasks file for OSPF_role
+- name: Show Running configuration using Roles 
+  cisco.ios.ios_command:
+    commands:
+      - show running-config
+  register: Running_config
+- name: Display config output
+  ansible.builtin.debug:
+    msg: "{{ Running_config }}"
+  notify: Save configuration
