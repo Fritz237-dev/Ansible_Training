@@ -1,0 +1,4 @@
+intf_ip:
+  - { name: "GigabitEthernet0/3", ip: 2.2.2.1/24, state: "up"}
+  - { name: "GigabitEthernet0/4", ip: 3.3.3.1/24, state: "up"}
+  - { name: "GigabitEthernet0/5", ip: 4.4.4.1/24, state: "up"}

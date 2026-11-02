@@ -1,0 +1,4 @@
+vlans:
+  - { id: 10, name: "Users", state: "active" }
+  - { id: 20, name: "Servers", state: "active" }
+  - { id: 30, name: "Management", state: "active" }
